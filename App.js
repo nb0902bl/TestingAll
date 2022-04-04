@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { StyleSheet } from 'react-native';
+import * as Animatable from 'react-native-animatable'
 
-export default function App() {
+import Navigation from './component/Navigation/Navigation';
+
+
+export default function App() {  
+  const {view} = styles
+  const DURATION = 400
+   const animation = {
+     0 : { opacity : 0 , translateY :400 },
+     1 : { opacity : 1 , translateY :0 },
+   }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+         <Animatable.View 
+         useNativeDriver
+         animation={animation}
+         delay={DURATION + 200}
+         style={view}>   
+          <Navigation/>
+         </Animatable.View>
   );
-}
-
+} 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  view:{
+    flex:1,
+    backgroundColor:'#f9fbfc'
+  }
+})
